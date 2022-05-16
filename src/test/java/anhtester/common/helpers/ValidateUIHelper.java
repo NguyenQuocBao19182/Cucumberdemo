@@ -40,6 +40,7 @@ public class ValidateUIHelper {
     public void clickElement(By element) {
         WebElement elementClick = wait.until(ExpectedConditions.elementToBeClickable(element));
         elementClick.click();
+        waitForPageLoaded();
     }
 
     public void clickElementWithJS(By element) {
