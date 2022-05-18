@@ -9,6 +9,8 @@ Feature: Login
     And User enters Email as "mti1_admin" and Password as "Fintech@123"
     And Click on Login button
     Then Page title should be "申込状況一覧"
+    And Click on 担当者管理/User Manage item on Left Menu
+    Then Title of User Manage page is "担当者管理"
     And close browser
 
 

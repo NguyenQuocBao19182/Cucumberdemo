@@ -8,7 +8,6 @@ import org.testng.Assert;
 public class LoginPage {
     private WebDriver driver;
     private ValidateUIHelper validateHelper;
-//    private String textHeader = "Welcome";
     private By headerLogin = By.xpath("//div[contains(text(),'管理コンソール')]");
     private By textboxUsername = By.id("UserId");
     private By textboxPassword = By.id("password");

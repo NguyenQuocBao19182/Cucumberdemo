@@ -3,6 +3,7 @@ package stepDefinitions;
 import anhtester.common.helpers.ValidateUIHelper;
 import anhtester.page.LoginPage;
 import anhtester.page.TopPage;
+import anhtester.page.UserManagePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,12 +15,14 @@ public class StepDefinitions {
     public WebDriver driver;
     public LoginPage loginPage;
     public TopPage topPage;
+    public UserManagePage userManagePage;
 
     @Given("User launch Chrome browser")
     public void user_launch_chrome_browser() {
         driver = new BaseSetup().setupDriver("chrome");
         loginPage = new LoginPage(driver);
         topPage = new TopPage(driver);
+        userManagePage = new UserManagePage(driver);
     }
 
     @When("User opens URL {string}")
@@ -52,6 +55,16 @@ public class StepDefinitions {
     @When("User launch Microsoft Edge browser")
     public void user_launch_microsoft_edge_browser() {
         driver = new BaseSetup().setupDriver("edge");
+    }
+
+    @Then("Click on 担当者管理\\/User Manage item on Left Menu")
+    public void click_on_担当者管理_user_manage_item_on_left_menu() {
+        topPage.clickUserManage();
+    }
+
+    @Then("Title of User Manage page is {string}")
+    public void title_of_user_manage_page_is(String string) {
+        userManagePage.checkHeaderUserManagePage(string);
     }
 
     @Then("close browser")
