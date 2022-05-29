@@ -101,4 +101,9 @@ public class ValidateUIHelper {
         waitForPageLoaded();
         return getTitle().equals(favicon);
     }
+
+    public boolean verifyPageSource(String source) {
+        Assert.assertTrue(driver.getPageSource().contains(source));
+        return true;
+    }
 }

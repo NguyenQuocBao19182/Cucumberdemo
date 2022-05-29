@@ -37,11 +37,11 @@ public class LoginPage {
         validateHelper.setText(textboxPassword, password);
     }
 
-    public void clickLogin()  {
+    public void clickLogin() {
         validateHelper.clickElement(buttonSubmit);
     }
-    public void getPageTitle(String pageTitle){
-        Assert.assertTrue(validateHelper.verifyTitle(pageTitle), "Chua dung title");
-    }
 
+    public void verifyErrorMessage(String message_error) {
+        validateHelper.verifyPageSource(message_error);
+    }
 }

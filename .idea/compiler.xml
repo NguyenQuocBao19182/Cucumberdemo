@@ -6,9 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Cucumberdemo1" />
         <module name="cucumber-jvm-example" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Maven" target="17" />
+      <module name="module" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Cucumberdemo1" options="--add-exports jakarta.activation/org.openqa.selenium=ALL-UNNAMED --add-exports jakarta.activation/org.openqa.selenium.chrome=ALL-UNNAMED --add-exports jakarta.activation/org.openqa.selenium.edge=ALL-UNNAMED --add-exports jakarta.activation/org.openqa.selenium.firefox=ALL-UNNAMED --add-exports jakarta.activation/org.openqa.selenium.support.ui=ALL-UNNAMED --add-exports jakarta.activation/org.openqa.selenium.interactions=ALL-UNNAMED" />
+    </option>
   </component>
 </project>

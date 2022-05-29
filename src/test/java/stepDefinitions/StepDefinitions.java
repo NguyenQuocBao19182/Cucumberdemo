@@ -43,8 +43,9 @@ public class StepDefinitions {
 
     @When("User can see the error message {string}")
     public void user_can_see_the_error_message(String string) {
-        driver.getPageSource().contains(string);
-        Assert.assertTrue(driver.getPageSource().contains(string));
+//        driver.getPageSource().contains(string);
+//        Assert.assertTrue(driver.getPageSource().contains(string));
+        loginPage.verifyErrorMessage(string);
     }
 
     @Then("Page title should be {string}")
@@ -57,7 +58,7 @@ public class StepDefinitions {
         driver = new BaseSetup().setupDriver("edge");
     }
 
-    @Then("Click on 担当者管理\\/User Manage item on Left Menu")
+    @Then("Click on 担当者管理:User Manage item on Left Menu")
     public void click_on_担当者管理_user_manage_item_on_left_menu() {
         topPage.clickUserManage();
     }
@@ -65,6 +66,72 @@ public class StepDefinitions {
     @Then("Title of User Manage page is {string}")
     public void title_of_user_manage_page_is(String string) {
         userManagePage.checkHeaderUserManagePage(string);
+    }
+
+    @When("the user click on 新規アカウント登録:New account registration button")
+    public void the_user_click_on_新規アカウント登録_new_account_registration_button() {
+        userManagePage.clickCreateUser();
+    }
+
+    @Then("the Enter persional pop-up is displayed with title is {string}")
+    public void the_enter_persional_pop_up_is_displayed_with_title_is(String string) {
+        userManagePage.verifyCreatePopup(string);
+    }
+
+    @When("the user input {string} into userID textbox")
+    public void the_user_input_into_user_id_textbox(String string) {
+        userManagePage.setTextUserID(string);
+    }
+
+    @When("the user input {string} into Responsible person textbox")
+    public void the_user_input_into_responsible_person_textbox(String string) throws InterruptedException {
+        userManagePage.setTextResponsiblePersion(string);
+    }
+
+    @When("the user Click on 承認者:Operator radio button")
+    public void the_user_click_on_承認者_operator_radio_button() {
+        userManagePage.clickOperatorRole();
+    }
+
+    @When("the user Click on Branch dropdownlist")
+    public void the_user_click_on_branch_dropdownlist() {
+        userManagePage.clickDummyBankDropdownlist();
+    }
+
+    @When("the user Select Dummy Bank branch A")
+    public void the_user_select_dummy_bank_branch_a() {
+        userManagePage.selectDummyBankA();
+    }
+
+    @When("the user input {string} into department textbox")
+    public void the_user_input_into_department_textbox(String string) {
+        userManagePage.setDepartment(string);
+    }
+
+    @When("the user input {string} into email textbox")
+    public void the_user_input_into_email_textbox(String string) {
+        userManagePage.setEmail(string);
+    }
+
+    @When("the user input {string} into phone number textbox")
+    public void the_user_input_into_phone_number_textbox(String string) {
+        userManagePage.setPhoneNumber(string);
+    }
+
+    @When("the user click on アカウント登録:Register button")
+    public void the_user_click_on_アカウント登録_register_button() {
+        userManagePage.clickonSubmitButton();
+    }
+
+    @Then("the {string} pop-up is displayed")
+    public void the_pop_up_is_displayed(String string) {
+        userManagePage.verifyCreateSuccessPopup(string);
+    }
+
+    @Then("the new user with Responsible person {string} displayed on User list")
+    public void the_new_user_with_responsible_person_displayed_on_user_list(String string) throws InterruptedException {
+        Thread.sleep(5000);//sẽ tìm cách wait for element disappeared in this step
+        Assert.assertTrue(userManagePage.verifyUserListByResponsiblePersion(string));
     }
 
     @Then("close browser")
