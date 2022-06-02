@@ -13,14 +13,14 @@ import org.testng.annotations.IDataProviderAnnotation;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //features = "C://Users//BaoNQ//IdeaProjects//Cucumberdemo1//Feature//userCreate.feature",
-        features = "C://Users//Admin//Cucumberdemo//Feature//Login.feature",
+        features = "C://Users//Admin//Cucumberdemo//Feature//userCreate.feature",
         glue = "stepDefinitions",
-        dryRun = false,//check mapping between feature and steps
-        monochrome = true, //display the console output in a proper redoble format
+        dryRun = false,
+        monochrome = true,
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "html:target/cucumber-reports/cucumber.json"}
 )
-public class RunCucumberTest extends AbstractTestNGCucumberTests {
+public class RunCucumberTest {
 
 }

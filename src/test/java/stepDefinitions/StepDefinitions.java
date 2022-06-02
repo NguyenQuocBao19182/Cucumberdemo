@@ -43,8 +43,6 @@ public class StepDefinitions {
 
     @When("User can see the error message {string}")
     public void user_can_see_the_error_message(String string) {
-//        driver.getPageSource().contains(string);
-//        Assert.assertTrue(driver.getPageSource().contains(string));
         loginPage.verifyErrorMessage(string);
     }
 
