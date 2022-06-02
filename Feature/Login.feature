@@ -4,6 +4,8 @@ Feature: Login
     Given User launch Chrome browser
     When User opens URL "http://console-dev.ekycs.jp/"
     And User enters Email as "<email>" and Password as "<password>"
+    When User opens URL ""
+    And User enters Email as "12312312321" and Password as "Fintech@123"
     And Click on Login button
     Then Page title should be "申込状況一覧"
     And close browser
@@ -16,6 +18,8 @@ Feature: Login
     Given User launch Chrome browser
     When User opens URL "http://console-dev.ekycs.jp/"
     And User enters Email as "<email>" and Password as "<password>"
+    And User can see the error message "ログインできませんでした。入力したログインIDまたはパスワードが正しくないか、アカウントが無効です。"
+    And User enters Email as "" and Password as ""
     And Click on Login button
     When User enters Email as "<email1>" and Password as "<password1>"
     And User can see the error message "ログインできませんでした。入力したログインIDまたはパスワードが正しくないか、アカウントが無効です。"
@@ -23,3 +27,4 @@ Feature: Login
     Examples:
       | email | password | email1 | password1 |
       | email | password | email1 | password1 |
+
