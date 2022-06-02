@@ -7,9 +7,11 @@ Feature: Create User
     And User enters Email as "mti1_admin" and Password as "Fintech@123"
     When User opens URL ""
     And User enters Email as "" and Password as ""
+    When User opens URL "http://console-dev.ekycs.jp/"
+    And User enters Email as "12312312321" and Password as "Fintech@123"
     And Click on Login button
     And User can see the error message "ログインできませんでした。入力したログインIDまたはパスワードが正しくないか、アカウントが無効です。"
-    And User enters Email as "" and Password as ""
+    And User enters Email as "mti1_admin" and Password as "Fintech@123"
     And Click on Login button
     And Page title should be "申込状況一覧"
     And Click on 担当者管理:User Manage item on Left Menu
