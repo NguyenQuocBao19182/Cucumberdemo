@@ -3,14 +3,14 @@ package anhtester.page;
 import anhtester.common.helpers.ValidateUIHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import stepDefinitions.BaseSetup;
 
 import java.util.List;
 
-public class UserManagePage {
-    private WebDriver driver;
+public class UserManagePage extends BaseSetup {
+    //private WebDriver driver;
     private ValidateUIHelper validateHelper;
     Actions action;
     private By header_UserManage = By.xpath("//h1[contains(text(),'担当者管理')]");
@@ -22,22 +22,22 @@ public class UserManagePage {
     private By button_dummyC = By.xpath("//div[contains(text(),'Dummy bank branch C')]");
     private By button_SubmitCreateUser = By.xpath("//button[@class='font-weight-bold ekyc-btn v-btn v-btn--outlined theme--light v-size--default prime large']//span[@class='v-btn__content'][contains(text(),'アカウント登録')]");
 
-    public UserManagePage(WebDriver driver) {
-        this.driver = driver;
+    public UserManagePage() {
+        //this.driver = driver;
         validateHelper = new ValidateUIHelper(driver);
         action = new Actions(driver);
     }
 
     public void checkHeaderUserManagePage(String headerUserManagePage) {
-        validateHelper.verifyElementText(header_UserManage, headerUserManagePage);
+        validateHelper.verifyElementTextbyBy(header_UserManage, headerUserManagePage);
     }
 
     public void clickCreateUser() {
-        validateHelper.clickElement(button_createUser);
+        validateHelper.ClickElementbyBy(button_createUser);
     }
 
     public void verifyCreatePopup(String titlePopup) {
-        validateHelper.verifyElementText(title_createUserPopup, titlePopup);
+        validateHelper.verifyElementTextbyBy(title_createUserPopup, titlePopup);
     }
 
     public void setTextUserID(String userID) {
@@ -51,11 +51,11 @@ public class UserManagePage {
     }
 
     public void clickOperatorRole() {
-        validateHelper.clickElement(radiobutton_operator);
+        validateHelper.ClickElementbyBy(radiobutton_operator);
     }
 
     public void clickDummyBankDropdownlist() {
-        validateHelper.clickElement(dropdownlist_dummybank);
+        validateHelper.ClickElementbyBy(dropdownlist_dummybank);
     }
 
     public void selectDummyBankA() {
@@ -64,7 +64,7 @@ public class UserManagePage {
     }
 
     public void selectDummyBankC() {
-        validateHelper.clickElement(button_dummyC);
+        validateHelper.ClickElementbyBy(button_dummyC);
     }
 
     public void setDepartment(String department) {
@@ -83,7 +83,7 @@ public class UserManagePage {
     }
 
     public void clickonSubmitButton() {
-        validateHelper.clickElement(button_SubmitCreateUser);
+        validateHelper.ClickElementbyBy(button_SubmitCreateUser);
     }
 
     public void verifyCreateSuccessPopup(String message) {

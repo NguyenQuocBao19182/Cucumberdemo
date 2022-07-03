@@ -3,21 +3,16 @@ package anhtester.page;
 import anhtester.common.helpers.ValidateUIHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
+import stepDefinitions.BaseSetup;
 
-public class LoginPage {
-    private WebDriver driver;
+public class LoginPage extends BaseSetup {
+
     private ValidateUIHelper validateHelper;
     private By headerLogin = By.xpath("//div[contains(text(),'管理コンソール')]");
     private By textboxUsername = By.id("UserId");
     private By textboxPassword = By.id("password");
     private By buttonSubmit = By.id("next");
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        validateHelper = new ValidateUIHelper(driver);
-    }
-
 
     //Khi chạy xong trang login thì trả về sự khởi tạo của trang Channel List luôn
 //    public TopPage login(String username, String password) {
@@ -28,20 +23,33 @@ public class LoginPage {
 //        validateHelper.waitForPageLoaded();
 //        return new TopPage(driver);
 //    }
+    public void setBrowser(String browser) {
+        setupDriver(browser);
+        validateHelper = new ValidateUIHelper(driver);
+    }
+
+    public void accessURL(String url) {
+        driver.get(url);
+    }
 
     public void setEmail(String email) {
-        validateHelper.setText(textboxUsername, email);
+        validateHelper.setTextbyBy(textboxUsername, email);
     }
 
     public void setPassword(String password) {
-        validateHelper.setText(textboxPassword, password);
+        validateHelper.setTextbyBy(textboxPassword, password);
     }
 
     public void clickLogin() {
-        validateHelper.clickElement(buttonSubmit);
+        validateHelper.ClickElementbyBy(buttonSubmit);
     }
 
     public void verifyErrorMessage(String message_error) {
         validateHelper.verifyPageSource(message_error);
+    }
+
+    public void quitBrowser() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.quit();
     }
 }

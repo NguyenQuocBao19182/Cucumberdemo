@@ -13,7 +13,7 @@ import org.testng.annotations.IDataProviderAnnotation;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //features = "C://Users//BaoNQ//IdeaProjects//Cucumberdemo1//Feature//userCreate.feature",
-        features = "C://Users//Admin//Cucumberdemo//Feature//userCreate.feature",
+        features = "C://Users//Admin//Cucumberdemo//Feature//Login.feature",
         glue = "stepDefinitions",
         dryRun = false,
         monochrome = true,

@@ -4,28 +4,26 @@ import anhtester.common.helpers.ValidateUIHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import stepDefinitions.BaseSetup;
 
-public class TopPage {
-
-    private WebDriver driver;
+public class TopPage extends BaseSetup {
     private ValidateUIHelper validateHelper;
     private String url = "/ekycs.jp";
     private By pageTitle_element = By.xpath("//span[contains(text(),'申込状況一覧')]");
     private By button_processing = By.xpath("//div[contains(text(),'処理中')]");
     private By button_userManage = By.xpath("//span[contains(text(),'担当者管理')]");
 
-    public TopPage(WebDriver driver) {
-        this.driver = driver;
+    public TopPage() {
         validateHelper = new ValidateUIHelper(driver);
     }
 
-    public void verifyPageTitle(String pageTitle) {
-        validateHelper.verifyElementText(pageTitle_element, pageTitle);
-        System.out.println("page cua top " + pageTitle_element);
+    public void verifyPageTitle(String pageTitle) throws InterruptedException {
+        validateHelper.waitForPageLoaded();
+        validateHelper.verifyElementTextbyBy(pageTitle_element, pageTitle);
     }
 
     public void clickUserManage() {
-        validateHelper.clickElement(button_userManage);
+        validateHelper.ClickElementbyBy(button_userManage);
     }
 
 //    public CreateChannelPage openChannelList() throws InterruptedException {

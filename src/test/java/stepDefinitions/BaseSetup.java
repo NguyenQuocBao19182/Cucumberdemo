@@ -6,17 +6,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseSetup {
 
-    private WebDriver driver;
+    public WebDriver driver;
 
-    static String driverPath = "C:\\Users\\Admin\\Downloads\\chromedriver_win32\\";
+    //static String driverPath = "C:\\Users\\Admin\\Downloads\\chromedriver_win32\\";
 
-    public WebDriver getDriver() {
-        return driver;
-    }
 
     public WebDriver setupDriver(String browserType) {
         switch (browserType.trim().toLowerCase()) {
@@ -57,15 +56,16 @@ public class BaseSetup {
 
     private WebDriver initChromeDriver() {
         System.out.println("Launching Chrome browser...");
+        new BaseSetup();
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         return driver;
     }
 
@@ -75,25 +75,29 @@ public class BaseSetup {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         return driver;
     }
+
     private WebDriver initFirefoxDriver() {
         System.out.println("Launching Firefox browser...");
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         return driver;
     }
 
+    public WebDriver getDriver(WebDriver driver) {
+        return driver;
+    }
 //    // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
 //    @Parameters({ "browserType", "appURL" })
 //    @BeforeClass

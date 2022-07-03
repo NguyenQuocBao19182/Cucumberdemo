@@ -18,11 +18,11 @@ public class ValidateUIHelper {
 
     public ValidateUIHelper(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 5);
+        wait=new WebDriverWait(driver,5);
         javascriptExecutor = (JavascriptExecutor) driver;
     }
 
-    public void setText(By element, String value) {
+    public void setTextbyBy(By element, String value) {
         //send key 1 giá trị là value cho element truyền vào
         WebElement elementWaited = wait.until(ExpectedConditions.elementToBeClickable(element));
         elementWaited.click();
@@ -30,17 +30,39 @@ public class ValidateUIHelper {
         elementWaited.sendKeys(value);
     }
 
-    public boolean verifyElementText(By element, String title) {
+    public void setTextbyWebElement(WebElement element, String value) {
+        WebElement elementWaited = wait.until(ExpectedConditions.elementToBeClickable(element));
+        elementWaited.click();
+        elementWaited.clear();
+        element.sendKeys(value);
+    }
+
+    public boolean verifyElementTextbyBy(By element, String title) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         Assert.assertEquals(driver.findElement(element).getText(), title);
         System.out.println("Da dung text element " + driver.findElement(element).getText());
         return true;
     }
 
-    public void clickElement(By element) {
+    public void ClickElementbyBy(By element) {
         WebElement elementClick = wait.until(ExpectedConditions.elementToBeClickable(element));
         elementClick.click();
         waitForPageLoaded();
+    }
+
+    public void ClickElementbyWebElemt(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        waitForPageLoaded();
+    }
+
+    public WebElement GetParentbyXpath(WebElement e) {
+        return e.findElement(By.xpath(".."));
+    }
+
+    public WebElement GetElementWithLabelbyXpath(String label) {
+        WebElement labelElt = driver.findElement(By.xpath("//label[contains(., '" + label + "')]"));
+        return GetParentbyXpath(labelElt).findElement(By.tagName("input"));
     }
 
     public void clickElementWithJS(By element) {
